@@ -1,16 +1,12 @@
 main = () => {
  axios.get('https://people.canonical.com/~anthonydillon/wp-json/wp/v2/posts.json')
     .then((response) => {
-      console.log(response.data);
-
       const app = document.getElementById('root');
       const container = document.createElement('div');
       container.setAttribute('class', 'container');
       app.appendChild(container);
 
       response.data.forEach((element) => {
-        console.log(element);
-
         const card = document.createElement('div');
         card.setAttribute('class', 'card');
 
