@@ -49,6 +49,7 @@ main = () => {
 
         by.appendChild(author);
         by.append(' on ');
+        by.append(moment(element.date).format('d MMMM YYYY'));
         body.appendChild(by);
 
         footer.appendChild(article);
