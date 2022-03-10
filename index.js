@@ -4,12 +4,12 @@ main = () => {
     .then((response) => {
       const app = document.getElementById('root');
       const container = document.createElement('div');
-      container.setAttribute('class', 'container');
+      container.setAttribute('class', 'row');
       app.appendChild(container);
 
       response.data.forEach((element) => {
         const card = document.createElement('div');
-        card.setAttribute('class', 'p-card card');
+        card.setAttribute('class', 'p-card card col-small-1 col-medium-2 col-4');
 
         const header = document.createElement('div');
         header.setAttribute('class', 'header');
@@ -36,7 +36,7 @@ main = () => {
         titleAnchor.setAttribute('href', '#');
 
         const author = document.createElement('div');
-        author.setAttribute('class', 'p-card_inner title');
+        author.setAttribute('class', 'p-card_inner');
         author.textContent = 'By ';
 
         const authorAnchor = document.createElement('a');
