@@ -1,5 +1,6 @@
 main = () => {
- axios.get('https://people.canonical.com/~anthonydillon/wp-json/wp/v2/posts.json')
+  axios
+    .get('https://people.canonical.com/~anthonydillon/wp-json/wp/v2/posts.json')
     .then((response) => {
       const app = document.getElementById('root');
       const container = document.createElement('div');
@@ -8,50 +9,57 @@ main = () => {
 
       response.data.forEach((element) => {
         const card = document.createElement('div');
-        card.setAttribute('class', 'card');
+        card.setAttribute('class', 'p-card card');
 
         const header = document.createElement('div');
         header.setAttribute('class', 'header');
 
-        const topic = document.createElement('h1');
-        topic.textContent = element.topic;
+        const separatorTop = document.createElement('hr');
+        separatorTop.setAttribute('class', 'is_muted');
 
-        const body = document.createElement('div');
-        body.setAttribute('class', 'body');
-
-        const title = document.createElement('h1');
-        title.textContent = element.title.rendered;
+        const topic = document.createElement('h5');
+        topic.setAttribute('class', 'topic-top');
+        if (element.topic.length !== 0) topic.textContent = element.topic;
+        else {
+          topic.textContent = 'topic';
+        }
 
         const image = document.createElement('img');
+        image.setAttribute('class', 'p-card__image');
         image.src = element.featured_media;
 
-        const by = document.createElement('p');
-        by.textContent = 'By ';
+        const title = document.createElement('h3');
 
-        const author = document.createElement('span');
-        author.textContent = element.author;
+        const titleAnchor = document.createElement('a');
+        titleAnchor.textContent = element.title.rendered;
+        title.appendChild(titleAnchor);
+        titleAnchor.setAttribute('href', '#');
 
-        const footer = document.createElement('div');
-        footer.setAttribute('class', 'footer');
+        const author = document.createElement('div');
+        author.setAttribute('class', 'p-card_inner title');
+        author.textContent = 'By ';
 
-        const article = document.createElement('h1');
+        const authorAnchor = document.createElement('a');
+        authorAnchor.textContent = element.author;
+        author.appendChild(authorAnchor);
+        authorAnchor.setAttribute('href', '#');
+        author.append(' on ');
+        author.append(moment(element.date).format('d MMMM YYYY'));
+
+        const separatorBottom = document.createElement('hr');
+        separatorBottom.setAttribute('class', 'is_muted');
+
+        const article = document.createElement('h5');
+        article.setAttribute('class', 'topic-bottom');
         article.textContent = element.author;
 
-        header.appendChild(topic);
-        card.appendChild(header);
-
-        body.appendChild(image);
-        body.appendChild(title);
-
-        by.appendChild(author);
-        by.append(' on ');
-        by.append(moment(element.date).format('d MMMM YYYY'));
-        body.appendChild(by);
-
-        footer.appendChild(article);
-        card.appendChild(body);
-        card.appendChild(footer);
-
+        card.appendChild(topic);
+        card.appendChild(separatorTop);
+        card.appendChild(image);
+        card.appendChild(title);
+        card.appendChild(author);
+        card.appendChild(separatorBottom);
+        card.appendChild(article);
         container.appendChild(card);
       });
     });
