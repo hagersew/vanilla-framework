@@ -9,7 +9,7 @@ main = () => {
 
       response.data.forEach((element) => {
         const card = document.createElement('div');
-        card.setAttribute('class', 'p-card card col-small-1 col-medium-2 col-4');
+        card.setAttribute('class', 'p-card card col-small-1 col-medium-2 col-4 p-card--highlighted');
 
         const header = document.createElement('div');
         header.setAttribute('class', 'header');
@@ -36,7 +36,6 @@ main = () => {
         titleAnchor.setAttribute('href', '#');
 
         const author = document.createElement('div');
-        author.setAttribute('class', 'p-card_inner');
         author.textContent = 'By ';
 
         const authorAnchor = document.createElement('a');
