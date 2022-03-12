@@ -9,10 +9,7 @@ main = () => {
 
       response.data.forEach((element) => {
         const card = document.createElement('div');
-        card.setAttribute('class', 'p-card card col-small-1 col-medium-2 col-4 p-card--highlighted');
-
-        const header = document.createElement('div');
-        header.setAttribute('class', 'header');
+        card.setAttribute('class', 'p-card card col-4 p-card--highlighted');
 
         const separatorTop = document.createElement('hr');
         separatorTop.setAttribute('class', 'is_muted');
