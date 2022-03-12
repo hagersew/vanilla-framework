@@ -30,15 +30,15 @@ main = () => {
         const titleAnchor = document.createElement('a');
         titleAnchor.textContent = element.title.rendered;
         title.appendChild(titleAnchor);
-        titleAnchor.setAttribute('href', '#');
+        titleAnchor.setAttribute('href', element.link);
 
         const author = document.createElement('div');
         author.textContent = 'By ';
 
         const authorAnchor = document.createElement('a');
-        authorAnchor.textContent = element.author;
+        authorAnchor.textContent = element._embedded.author[0].name;
         author.appendChild(authorAnchor);
-        authorAnchor.setAttribute('href', '#');
+        authorAnchor.setAttribute('href', element._embedded.author[0].url);
         author.append(' on ');
         author.append(moment(element.date).format('d MMMM YYYY'));
 
@@ -47,7 +47,7 @@ main = () => {
 
         const article = document.createElement('h5');
         article.setAttribute('class', 'topic-bottom');
-        article.textContent = element.author;
+        article.textContent = element.categories;
 
         card.appendChild(topic);
         card.appendChild(separatorTop);
